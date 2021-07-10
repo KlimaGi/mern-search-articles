@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const searchWordSchema = new Schema(
   {
-    searchWord: {
+    searchword: {
       type: String,
       required: true,
       unique: true,
