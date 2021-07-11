@@ -10,3 +10,9 @@
   height: 50%;
   object-fit: cover;
 }
+.truncate {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
