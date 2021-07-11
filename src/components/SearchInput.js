@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "font-awesome/css/font-awesome.min.css";
 import axios from "axios";
 
 export default class SearchInput extends Component {
@@ -7,10 +8,13 @@ export default class SearchInput extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChangeSearchWord = this.onChangeSearchWord.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
 
     this.state = {
       searchword: "",
       searchwords: [],
+      showResults: false,
     };
   }
 
@@ -19,9 +23,25 @@ export default class SearchInput extends Component {
       if (response.data.length > 0) {
         this.setState({
           searchwords: response.data.map((word) => word.searchword),
-          searchword: response.data[0].searchword,
+          searchword: "",
         });
       }
+    });
+  }
+
+  handleClick() {
+    this.setState({
+      showResults: true,
+      searchword: "",
+    });
+  }
+
+  handleSelect() {
+    this.setState((word) => {
+      return {
+        searchword: word,
+        showResults: false,
+      };
     });
   }
 
@@ -52,28 +72,42 @@ export default class SearchInput extends Component {
   render() {
     return (
       <div className="px-5">
-        <p>Search</p>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <div className="form-group my-3">
-              <label>Input search word</label>
-              <input
-                type="text"
-                className="form-control"
-                value={this.state.searchword}
-                onChange={this.onChangeSearchWord}
-              />
-            </div>
-            <ul>
-              {this.state.searchwords.map(function (searchword, index) {
-                return <li key={`${index}-${Date.now()}`}>{searchword}</li>;
-              })}
-            </ul>
-
-            <div className="form-group">
-              <input type="submit" className="btn btn-primary" />
+          <div className="my-3">
+            <div className="d-flex justify-content-center">
+              <div className="">
+                <input
+                  type="text"
+                  className="form-control"
+                  value={this.state.searchword}
+                  onChange={this.onChangeSearchWord}
+                  onClick={this.handleClick}
+                />
+              </div>
+              <div className="mx-2">
+                <button type="submit" className="btn btn-secondary d-inline">
+                  <i className="fa fa-search"></i>
+                </button>
+              </div>
             </div>
           </div>
+
+          {this.state.showResults && (
+            <ul>
+              {this.state.searchwords
+                .map(function (searchword, index) {
+                  return (
+                    <li
+                      onClick={this.handleSelect}
+                      key={`${index}-${Date.now()}`}
+                    >
+                      {searchword}
+                    </li>
+                  );
+                })
+                .slice(0, 6)}
+            </ul>
+          )}
         </form>
       </div>
     );
