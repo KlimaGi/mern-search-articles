@@ -1,11 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class Article extends Component {
-  render() {
-    return (
-      <div>
-        <h4>Article One</h4>
-      </div>
-    );
-  }
-}
+const Article = (props) => (
+  <div className="col-lg-4 col-md-6 col-sm-12 p-5 border-line">
+    <div className="">
+      <img src={props.image} className="articles-list" />
+    </div>
+    <h4>{props.title}</h4>
+    <p>{props.description}</p>
+    <p>{props.time}</p>
+    <p>{new Date(new Date() - 14400 * 1000).toISOString()}</p>
+    <a href={props.url} className="btn btn-secondary">
+      Read article
+    </a>
+  </div>
+);
+
+export default Article;
