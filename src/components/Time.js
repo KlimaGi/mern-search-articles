@@ -9,12 +9,18 @@ class Time extends Component {
     this.state = {
       date: new Date(),
     };
+
+    this.onChangeDate = this.onChangeDate.bind(this);
   }
   onChangeDate(date) {
     this.setState({
       date: date,
     });
-    console.log(this.state.date);
+    console.log(
+      "date",
+      new Date(this.state.date).toISOString().split(".")[0] + "Z"
+    );
+    this.props.onSetTime(this.state.date);
   }
   render() {
     return (

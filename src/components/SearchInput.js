@@ -19,6 +19,7 @@ export default class SearchInput extends Component {
       searchwords: [],
       articlesFromGNews: [],
       language: "",
+      time: "",
     };
   }
 
@@ -83,9 +84,10 @@ export default class SearchInput extends Component {
     // get gNews articles by searchword
     const search = this.state.searchword || "news";
     const lang = this.state.language || "en";
+    const time = new Date(this.state.time).toISOString().split(".")[0] + "Z";
     console.log("lang", lang);
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&max=9&token=8dbeb974cde3adbf5fbdb91d32ed9f61
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${time}&max=9&token=8dbeb974cde3adbf5fbdb91d32ed9f61
 
 `
     )
@@ -125,7 +127,11 @@ export default class SearchInput extends Component {
               </div>
 
               <div>
-                <Time />
+                <Time
+                  onSetTime={(time) => {
+                    this.setState({ time: time });
+                  }}
+                />
               </div>
               <div className="mx-2">
                 <button
