@@ -30,14 +30,16 @@ export default class Button extends Component {
 
   render() {
     return (
-      <a
-        href={this.props.linkTo}
-        target="_blank"
-        onClick={this.writeToDB}
-        className="btn btn-secondary"
-      >
-        Read Article
-      </a>
+      <div className="d-flex justify-content-center">
+        <a
+          href={this.props.linkTo}
+          target="_blank"
+          onClick={this.writeToDB}
+          className="btn"
+        >
+          Read Article
+        </a>
+      </div>
     );
   }
 }

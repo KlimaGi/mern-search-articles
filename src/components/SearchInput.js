@@ -34,7 +34,7 @@ export default class SearchInput extends Component {
       new Date(new Date() - 24 * 3600 * 1000).toISOString().split(".")[0] + "Z";
     console.log(time);
     fetch(
-      `https://gnews.io/api/v4/search?q=news&lang=en&from=${time}&max=9&token=ad067a361343c4bbf32705a9be330165`
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=34db469be0d798ab5d942cde3f50538e`
     )
       .then(function (response) {
         return response.json();
@@ -75,7 +75,7 @@ export default class SearchInput extends Component {
     const search = this.state.searchword;
 
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&lang=en&max=9&token=ad067a361343c4bbf32705a9be330165`
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=en&max=9&token=34db469be0d798ab5d942cde3f50538e`
     )
       .then(function (response) {
         return response.json();
@@ -89,7 +89,7 @@ export default class SearchInput extends Component {
   render() {
     return (
       <div>
-        <div className="d-flex justify-content-start align-items-center bg-secondary bg-gradient px-5 ">
+        <div className="d-flex justify-content-start align-items-center back-color-style px-5 ">
           <div className=" mx-3 my-3">
             <h2 className="text-white m-0">Articles from GNews</h2>
           </div>

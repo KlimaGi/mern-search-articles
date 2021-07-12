@@ -30,9 +30,7 @@ export default class ArticlesList extends Component {
 
   render() {
     return (
-      <div className="row px-5 ">
-        {this.articleList(this.props.articlesData)}
-      </div>
+      <div className="row">{this.articleList(this.props.articlesData)}</div>
     );
   }
 }
