@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "font-awesome/css/font-awesome.min.css";
 import axios from "axios";
 import ArticlesList from "./ArticlesList";
+import Search from "./Search";
+import Language from "./Language";
 
 export default class SearchInput extends Component {
   constructor(props) {
@@ -15,26 +17,30 @@ export default class SearchInput extends Component {
       searchword: "",
       searchwords: [],
       articlesFromGNews: [],
+      language: "",
     };
   }
 
   componentDidMount() {
-    // get searchwords from mongoDB
-    axios.get("http://localhost:5000/searchwords").then((response) => {
-      if (response.data.length > 0) {
-        this.setState({
-          searchwords: response.data.map((word) => word.searchword),
-          searchword: "",
-        });
-      }
-    });
+    // // get searchwords from mongoDB
+    // axios.get("http://localhost:5000/searchwords").then((response) => {
+    //   // if (response.data.length > 0) {
+    //   //   this.setState({
+    //   //     searchwords: response.data.map((word) => word.searchword),
+    //   //     searchword: "",
+    //   //   });
+    //   //   console.log("arr in parent", this.state.searchwords);
+    //   // }
+    //   this.setState({ searchwords: response.data });
+    //   console.log("arr in parent", this.state.searchwords);
+    // });
 
     // get articles from gNews, 24h old
     const time =
       new Date(new Date() - 24 * 3600 * 1000).toISOString().split(".")[0] + "Z";
     console.log(time);
     fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=34db469be0d798ab5d942cde3f50538e`
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5`
     )
       .then(function (response) {
         return response.json();
@@ -72,10 +78,11 @@ export default class SearchInput extends Component {
       .then((res) => console.log(res.data));
 
     // get gNews articles by searchword
-    const search = this.state.searchword;
-
+    const search = this.state.searchword || "news";
+    const lang = this.state.language || "en";
+    console.log("lang", lang);
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=en&max=9&token=34db469be0d798ab5d942cde3f50538e`
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5`
     )
       .then(function (response) {
         return response.json();
@@ -90,32 +97,41 @@ export default class SearchInput extends Component {
     return (
       <div>
         <div className="d-flex justify-content-start align-items-center back-color-style px-5 ">
-          <div className=" mx-3 my-3">
+          <div className=" mx-5 my-3">
             <h2 className="text-white m-0">Articles from GNews</h2>
           </div>
 
           <form onSubmit={this.onSubmit}>
             <div className="d-flex justify-content-center mx-5 my-3">
               <div>
-                <input
-                  type="text"
-                  className="form-control"
+                <Search
+                  onSendWord={(inputWord) =>
+                    this.setState({ searchword: inputWord })
+                  }
                   value={this.state.searchword}
-                  onChange={this.onChangeSearchWord}
-                  onClick={this.handleClick}
                 />
               </div>
-
-              <button
-                type="submit"
-                className="btn btn-outline-light d-inline mx-2"
-              >
-                <i className="fa fa-search"></i>
-              </button>
+              <div>
+                <Language
+                  onClickLanguage={(lang) => {
+                    this.setState({ language: lang });
+                  }}
+                />
+              </div>
+              <div className="mx-2">
+                <button
+                  type="submit"
+                  className="btn btn-outline-light d-inline mx-2"
+                >
+                  <i className="fa fa-search"></i>
+                </button>
+              </div>
             </div>
           </form>
         </div>
-        <ArticlesList articlesData={this.state.articlesFromGNews} />
+        <div className="px-5">
+          <ArticlesList articlesData={this.state.articlesFromGNews} />
+        </div>
       </div>
     );
   }

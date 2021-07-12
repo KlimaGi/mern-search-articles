@@ -1,9 +1,16 @@
-.border-line {
+/* .border-line {
   border: 1px solid green;
+} */
+body {
+  background: #f8f5f5;
 }
 * {
   color: purple;
 }
+.text-color {
+  color: #864586;
+}
+
 .article-box {
   width: 80%;
   height: 32rem;
@@ -26,37 +33,20 @@
   background-image: linear-gradient(90deg, #dcdcdc, #8f8f8f, #dcdcdc);
   color: gainsboro;
 }
-/* .truncate {
-  display: block;
-  white-space: nowrap;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} */
-/* .p-truncate {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: purple;
-} */
-.ptruncate {
-  display: -webkit-box !important;
-  -webkit-box-orient: vertical !important;
-  -webkit-line-clamp: 2 !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  background-color: rgb(218, 191, 204);
+
+.search-list-box {
+  background: #f0eaf0;
+  position: absolute;
+  z-index: 1;
+}
+.li-item {
+  list-style: none;
+}
+.li-item:hover {
+  background: #e7dbe7;
+  background-image: linear-gradient(90deg, #f0eaf0, #e7dbe7 50%);
 }
 .for-truncate-width {
   max-width: 20rem;
   min-width: 10rem;
 }
-/* .text-truncate--2 {
-  display: -webkit-box !important;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  white-space: normal;
-  color: #90819e;
-} */
