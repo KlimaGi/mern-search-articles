@@ -35,18 +35,23 @@ body {
 }
 
 .search-list-box {
-  background: #f0eaf0;
+  background: #f8f5f5;
   position: absolute;
   z-index: 1;
 }
 .li-item {
   list-style: none;
 }
-.li-item:hover {
+/* .li-item:hover {
   background: #e7dbe7;
   background-image: linear-gradient(90deg, #f0eaf0, #e7dbe7 50%);
-}
+} */
 .for-truncate-width {
   max-width: 20rem;
   min-width: 10rem;
+}
+
+.date-style {
+  padding: 0.4rem;
+  border-style: none;
 }

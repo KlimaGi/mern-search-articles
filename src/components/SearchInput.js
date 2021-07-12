@@ -4,6 +4,7 @@ import axios from "axios";
 import ArticlesList from "./ArticlesList";
 import Search from "./Search";
 import Language from "./Language";
+import Time from "./Time";
 
 export default class SearchInput extends Component {
   constructor(props) {
@@ -40,7 +41,9 @@ export default class SearchInput extends Component {
       new Date(new Date() - 24 * 3600 * 1000).toISOString().split(".")[0] + "Z";
     console.log(time);
     fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5`
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=8dbeb974cde3adbf5fbdb91d32ed9f61
+
+`
     )
       .then(function (response) {
         return response.json();
@@ -82,7 +85,9 @@ export default class SearchInput extends Component {
     const lang = this.state.language || "en";
     console.log("lang", lang);
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5`
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&max=9&token=8dbeb974cde3adbf5fbdb91d32ed9f61
+
+`
     )
       .then(function (response) {
         return response.json();
@@ -117,6 +122,10 @@ export default class SearchInput extends Component {
                     this.setState({ language: lang });
                   }}
                 />
+              </div>
+
+              <div>
+                <Time />
               </div>
               <div className="mx-2">
                 <button

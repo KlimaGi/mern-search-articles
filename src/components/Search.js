@@ -88,7 +88,7 @@ class Search extends React.Component {
         />
 
         {this.state.showResults && (
-          <ul className="search-list-box rounded">
+          <ul className="search-list-box rounded px-3">
             {this.state.filteredSearchWordsFromDB.map((word, index) => (
               <WordsList
                 searchWord={word}
@@ -108,7 +108,7 @@ function WordsList(props) {
   return (
     <li
       key={props.indexKey}
-      className="li-item p-1"
+      className="li-item px-3 py-1"
       onClick={() => {
         props.onClickWord(props.searchWord);
       }}
