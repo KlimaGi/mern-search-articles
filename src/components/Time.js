@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import DateRangePicker from "react-bootstrap-daterangepicker";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
+import moment from "moment";
 
 class Time extends Component {
   constructor(props) {
@@ -10,12 +11,9 @@ class Time extends Component {
     this.handleCallback = this.handleCallback.bind(this);
   }
 
-  handleCallback(start, end, label) {
+  handleCallback(start, end) {
     const startTime = start._d.toISOString().split(".")[0] + "Z";
     const endTime = end._d.toISOString().split(".")[0] + "Z";
-
-    console.log(start._d.toISOString().split(".")[0] + "Z");
-    console.log(end._d.toISOString().split(".")[0] + "Z");
 
     this.props.onSetTime(startTime, endTime);
   }
@@ -23,7 +21,10 @@ class Time extends Component {
   render() {
     return (
       <DateRangePicker
-        initialSettings={{ startDate: "1/1/2021", endDate: "3/1/2021" }}
+        initialSettings={{
+          startDate: moment().subtract(2, "days").calendar(),
+          endDate: moment().calendar(),
+        }}
         onEvent={this.handleEvent}
         onCallback={this.handleCallback}
       >

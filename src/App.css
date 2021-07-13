@@ -12,7 +12,7 @@ body {
 }
 
 .article-box {
-  width: 80%;
+  width: 25rem;
   height: 32rem;
   border: 1px solid gainsboro;
   position: relative;
@@ -21,13 +21,17 @@ body {
   position: absolute;
   bottom: 0;
 }
+
+.button-style:hover {
+  color: #864586 !important;
+}
 .visited {
-  background-color: gainsboro;
+  background-color: rgba(220, 220, 220, 0.6);
   width: 2.8rem;
   height: 2.8rem;
   position: absolute;
-  top: -1.3rem;
-  right: -1.3rem;
+  top: 0.8rem;
+  right: 0.8rem;
   font-size: 1.5rem;
 }
 

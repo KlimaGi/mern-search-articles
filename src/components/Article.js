@@ -3,8 +3,8 @@ import ButtonLink from "./ButtonLink";
 import "font-awesome/css/font-awesome.min.css";
 
 const Article = (props) => (
-  <div className=" col-lg-4 col-md-6 col-sm-12 border-line">
-    <div className="m-5 article-box">
+  <div className=" border-line">
+    <div className="article-box m-4">
       <img src={props.image} className="img-style" alt="" />
 
       {props.visited && (

@@ -2,12 +2,12 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import SearchInput from "./components/SearchInput";
+import Main from "./components/Main";
 
 function App() {
   return (
     <div className="container-fluid g-0">
-      <SearchInput />
+      <Main />
     </div>
   );
 }

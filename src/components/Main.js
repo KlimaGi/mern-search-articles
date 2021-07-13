@@ -6,7 +6,7 @@ import Search from "./Search";
 import Language from "./Language";
 import Time from "./Time";
 
-export default class SearchInput extends Component {
+export default class Main extends Component {
   constructor(props) {
     super(props);
 
@@ -30,7 +30,7 @@ export default class SearchInput extends Component {
       new Date(new Date() - 24 * 3600 * 1000).toISOString().split(".")[0] + "Z";
     console.log(time);
     fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=34db469be0d798ab5d942cde3f50538e
 
 `
     )
@@ -76,7 +76,7 @@ export default class SearchInput extends Component {
     const to = this.state.to;
 
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=34db469be0d798ab5d942cde3f50538e
 
 `
     )
@@ -92,14 +92,14 @@ export default class SearchInput extends Component {
   render() {
     return (
       <div>
-        <div className="d-flex justify-content-start align-items-center back-color-style px-5 ">
-          <div className=" mx-5 my-3">
+        <div className="d-flex flex-wrap justify-content-start align-items-center back-color-style px-5 py-3">
+          <div className="mx-5 ">
             <h2 className="text-white m-0">Articles from GNews</h2>
           </div>
 
           <form onSubmit={this.onSubmit}>
-            <div className="d-flex justify-content-center mx-5 my-3">
-              <div>
+            <div className="d-flex flex-wrap justify-content-center ">
+              <div className="m-1 ">
                 <Search
                   onSendWord={(inputWord) =>
                     this.setState({ searchword: inputWord })
@@ -107,7 +107,7 @@ export default class SearchInput extends Component {
                   value={this.state.searchword}
                 />
               </div>
-              <div>
+              <div className="m-1">
                 <Language
                   onClickLanguage={(lang) => {
                     this.setState({ language: lang });
@@ -115,17 +115,17 @@ export default class SearchInput extends Component {
                 />
               </div>
 
-              <div className="px-3">
+              <div className="px-2 m-1">
                 <Time
                   onSetTime={(from, to) => {
                     this.setState({ from, to });
                   }}
                 />
               </div>
-              <div className="mx-2">
+              <div className="m-1">
                 <button
                   type="submit"
-                  className="btn btn-outline-light d-inline mx-2"
+                  className="btn btn-outline-light d-inline button-style"
                 >
                   <i className="fa fa-search"></i>
                 </button>

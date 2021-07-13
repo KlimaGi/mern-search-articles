@@ -50,7 +50,9 @@ export default class ArticlesList extends Component {
 
   render() {
     return (
-      <div className="row">{this.articleList(this.props.articlesData)}</div>
+      <div className="d-flex flex-wrap justify-content-evenly my-3">
+        {this.articleList(this.props.articlesData)}
+      </div>
     );
   }
 }
