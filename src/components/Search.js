@@ -9,6 +9,7 @@ class Search extends React.Component {
       filteredSearchWordsFromDB: [],
       selectedWord: "",
       searchWordsFromDB: [],
+      error: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -38,13 +39,14 @@ class Search extends React.Component {
   }
 
   handleChange(event) {
-    // this.setState({
-    //   selectedWord: event.target.value,
-    // });
-
     this.props.onSendWord(event.target.value);
+    const word = event.target.value;
 
-    if (event.target.value.length >= 2) {
+    if (
+      word.length >= 2 &&
+      word.length <= 40 &&
+      word.match(/^[a-zA-Z0-9 ]*$/gi)
+    ) {
       const filteredSearchWordsFromDB = this.state.searchWordsFromDB.filter(
         (el) => {
           if (el.indexOf(event.target.value) !== -1) {
@@ -54,6 +56,7 @@ class Search extends React.Component {
       );
       this.setState({
         filteredSearchWordsFromDB: filteredSearchWordsFromDB,
+        error: false,
       });
 
       this.setState({
@@ -62,6 +65,7 @@ class Search extends React.Component {
     } else {
       this.setState({
         showResults: false,
+        error: true,
       });
     }
   }
@@ -78,9 +82,15 @@ class Search extends React.Component {
   render() {
     return (
       <div className="">
+        {this.state.error && (
+          <div className="error">
+            <p className="text-danger">Ups... please enter valid word</p>
+          </div>
+        )}
+
         <input
           type="text"
-          className="form-control"
+          className="form-control input-back text-color"
           value={this.props.value}
           onChange={this.handleChange}
           onFocus={this.handleFocus}
@@ -88,7 +98,7 @@ class Search extends React.Component {
         />
 
         {this.state.showResults && (
-          <ul className="search-list-box rounded px-3">
+          <ul className="search-list-box rounded">
             {this.state.filteredSearchWordsFromDB.map((word, index) => (
               <WordsList
                 searchWord={word}
@@ -108,7 +118,7 @@ function WordsList(props) {
   return (
     <li
       key={props.indexKey}
-      className="li-item px-3 py-1"
+      className="li-item px-3 py-1 "
       onClick={() => {
         props.onClickWord(props.searchWord);
       }}

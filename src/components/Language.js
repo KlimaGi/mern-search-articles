@@ -50,7 +50,7 @@ class Language extends Component {
     return (
       <div>
         <select
-          className="form-select text-color mx-2"
+          className="form-select text-color mx-2 input-back"
           onChange={this.onClickL}
         >
           <option className="text-color">Select Language</option>

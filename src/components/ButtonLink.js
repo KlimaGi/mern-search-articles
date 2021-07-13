@@ -39,7 +39,7 @@ export default class Button extends Component {
           href={this.props.linkTo}
           target="_blank"
           onClick={this.writeToDB}
-          className="btn text-white button-style"
+          className="text-white link-style p-2"
         >
           Read Article
         </a>

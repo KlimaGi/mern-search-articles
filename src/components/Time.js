@@ -28,8 +28,8 @@ class Time extends Component {
         onEvent={this.handleEvent}
         onCallback={this.handleCallback}
       >
-        <button type="button" className="btn btn-outline-light">
-          click to open
+        <button type="button" className="btn btn-outline-light mx-2 px-3">
+          Select date
         </button>
       </DateRangePicker>
     );
