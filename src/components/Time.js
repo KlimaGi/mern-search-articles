@@ -1,36 +1,36 @@
 import React, { Component } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import DateRangePicker from "react-bootstrap-daterangepicker";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-daterangepicker/daterangepicker.css";
 
 class Time extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      date: new Date(),
-    };
+    this.handleCallback = this.handleCallback.bind(this);
+  }
 
-    this.onChangeDate = this.onChangeDate.bind(this);
+  handleCallback(start, end, label) {
+    const startTime = start._d.toISOString().split(".")[0] + "Z";
+    const endTime = end._d.toISOString().split(".")[0] + "Z";
+
+    console.log(start._d.toISOString().split(".")[0] + "Z");
+    console.log(end._d.toISOString().split(".")[0] + "Z");
+
+    this.props.onSetTime(startTime, endTime);
   }
-  onChangeDate(date) {
-    this.setState({
-      date: date,
-    });
-    console.log(
-      "date",
-      new Date(this.state.date).toISOString().split(".")[0] + "Z"
-    );
-    this.props.onSetTime(this.state.date);
-  }
+
   render() {
     return (
-      <div className="form-group px-3 ">
-        <DatePicker
-          className="date-style rounded"
-          selected={this.state.date}
-          onChange={this.onChangeDate}
-        />
-      </div>
+      <DateRangePicker
+        initialSettings={{ startDate: "1/1/2021", endDate: "3/1/2021" }}
+        onEvent={this.handleEvent}
+        onCallback={this.handleCallback}
+      >
+        <button type="button" className="btn btn-outline-light">
+          click to open
+        </button>
+      </DateRangePicker>
     );
   }
 }

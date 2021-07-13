@@ -26,10 +26,6 @@ router.route("/:id").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/:id").delete((req, res) => {
-  Article.findByIdAndDelete(req.params.id)
-    .then(() => res.json("Exercise deleted."))
-    .catch((err) => res.status(400).json("Error: " + err));
-});
+
 
 module.exports = router;

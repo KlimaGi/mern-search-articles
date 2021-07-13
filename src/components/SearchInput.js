@@ -19,30 +19,18 @@ export default class SearchInput extends Component {
       searchwords: [],
       articlesFromGNews: [],
       language: "",
-      time: "",
+      from: "",
+      to: "",
     };
   }
 
   componentDidMount() {
-    // // get searchwords from mongoDB
-    // axios.get("http://localhost:5000/searchwords").then((response) => {
-    //   // if (response.data.length > 0) {
-    //   //   this.setState({
-    //   //     searchwords: response.data.map((word) => word.searchword),
-    //   //     searchword: "",
-    //   //   });
-    //   //   console.log("arr in parent", this.state.searchwords);
-    //   // }
-    //   this.setState({ searchwords: response.data });
-    //   console.log("arr in parent", this.state.searchwords);
-    // });
-
     // get articles from gNews, 24h old
     const time =
       new Date(new Date() - 24 * 3600 * 1000).toISOString().split(".")[0] + "Z";
     console.log(time);
     fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=8dbeb974cde3adbf5fbdb91d32ed9f61
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5
 
 `
     )
@@ -51,7 +39,7 @@ export default class SearchInput extends Component {
       })
       .then((data) => {
         this.setState({ articlesFromGNews: data.articles });
-        console.log(data.articles);
+        console.log("search input 9 data", data.articles);
       });
   }
 
@@ -84,10 +72,11 @@ export default class SearchInput extends Component {
     // get gNews articles by searchword
     const search = this.state.searchword || "news";
     const lang = this.state.language || "en";
-    const time = new Date(this.state.time).toISOString().split(".")[0] + "Z";
-    console.log("lang", lang);
+    const from = this.state.from;
+    const to = this.state.to;
+
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${time}&max=9&token=8dbeb974cde3adbf5fbdb91d32ed9f61
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5
 
 `
     )
@@ -126,10 +115,10 @@ export default class SearchInput extends Component {
                 />
               </div>
 
-              <div>
+              <div className="px-3">
                 <Time
-                  onSetTime={(time) => {
-                    this.setState({ time: time });
+                  onSetTime={(from, to) => {
+                    this.setState({ from, to });
                   }}
                 />
               </div>

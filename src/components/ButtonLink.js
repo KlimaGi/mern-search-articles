@@ -26,6 +26,10 @@ export default class Button extends Component {
       .then((res) => console.log(res.data));
 
     console.log(this.state.title);
+
+    window.setTimeout(function () {
+      window.location.reload();
+    }, 1000);
   };
 
   render() {

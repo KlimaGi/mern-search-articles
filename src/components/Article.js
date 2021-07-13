@@ -1,10 +1,18 @@
 import React from "react";
-import ButtonList from "./ButtonLink";
+import ButtonLink from "./ButtonLink";
+import "font-awesome/css/font-awesome.min.css";
 
 const Article = (props) => (
   <div className=" col-lg-4 col-md-6 col-sm-12 border-line">
     <div className="m-5 article-box">
-      <img src={props.image} className="img-style" />
+      <img src={props.image} className="img-style" alt="" />
+
+      {props.visited && (
+        <div className="visited rounded-circle text-center p-1">
+          <i class="fa fa-eye"></i>
+        </div>
+      )}
+
       <div className="m-3">
         <h5 className="">{props.title}</h5>
 
@@ -12,9 +20,8 @@ const Article = (props) => (
           {props.description}
         </p>
       </div>
-
       <div className="bottom container-fluid rounded-0 back-color-style">
-        <ButtonList title={props.title} linkTo={props.url} />
+        <ButtonLink title={props.title} linkTo={props.url} />
       </div>
     </div>
   </div>
