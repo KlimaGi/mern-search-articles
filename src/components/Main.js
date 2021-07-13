@@ -30,7 +30,7 @@ export default class Main extends Component {
       new Date(new Date() - 24 * 3600 * 1000).toISOString().split(".")[0] + "Z";
     console.log(time);
     fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=34db469be0d798ab5d942cde3f50538e
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=9f76b7fad62719cde83c324e1de64e63
 
 `
     )
@@ -76,7 +76,7 @@ export default class Main extends Component {
     const to = this.state.to;
 
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=34db469be0d798ab5d942cde3f50538e
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=9f76b7fad62719cde83c324e1de64e63
 
 `
     )
@@ -92,13 +92,13 @@ export default class Main extends Component {
   render() {
     return (
       <div>
-        <div className="d-flex flex-wrap justify-content-start align-items-center back-color-style px-5 py-3">
+        <div className="d-flex flex-wrap justify-content-start  back-color-style px-5 py-4">
           <div className="mx-5 ">
             <h2 className="text-white m-0">Articles from GNews</h2>
           </div>
 
           <form onSubmit={this.onSubmit}>
-            <div className="d-flex flex-wrap justify-content-center ">
+            <div className="d-flex flex-wrap justify-content-center">
               <div className="m-1 ">
                 <Search
                   onSendWord={(inputWord) =>

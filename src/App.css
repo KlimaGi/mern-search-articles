@@ -82,7 +82,7 @@ body {
   background: #f3f3f3;
   width: 10.8rem;
   position: absolute;
-  top: 3.4rem;
+  top: 3.8rem;
   z-index: 1;
 }
 .li-item {
@@ -108,11 +108,9 @@ body {
 }
 
 /****** error message ******/
-.input-box {
-  position: relative;
-}
+
 .error {
   position: absplute;
-  top: 1rem;
   z-index: 1;
+  top: 0;
 }
