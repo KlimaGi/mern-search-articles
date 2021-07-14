@@ -82,6 +82,14 @@ class Search extends React.Component {
   render() {
     return (
       <div className="">
+        <div className="error-box error">
+          {this.state.error && (
+            <p className="error text-danger pb-1 m-0">
+              Oops... please enter valid word
+            </p>
+          )}
+        </div>
+
         <input
           type="text"
           className="form-control input-back text-color"
@@ -90,13 +98,7 @@ class Search extends React.Component {
           onFocus={this.handleFocus}
           placeholder="Enter search word"
         />
-        {this.state.error && (
-          <div className="error">
-            <p className="text-danger p-1 m-0">
-              Ups... please enter valid word
-            </p>
-          </div>
-        )}
+
         {this.state.showResults && this.props.showUl && (
           <ul className="search-list-box rounded">
             {this.state.filteredSearchWordsFromDB.map((word, index) => (

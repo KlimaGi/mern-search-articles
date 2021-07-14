@@ -106,7 +106,8 @@ body {
 /****** error message ******/
 
 .error {
-  position: absplute;
-  z-index: 1;
-  top: 0;
+  visibility: visible;
+}
+.error-box {
+  height: 2rem;
 }

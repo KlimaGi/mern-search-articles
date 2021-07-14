@@ -94,13 +94,13 @@ export default class Main extends Component {
   render() {
     return (
       <div>
-        <div className="d-flex flex-wrap justify-content-start  back-color-style px-5 py-4">
+        <div className="d-flex align-items-end flex-wrap justify-content-start  back-color-style px-5 bt-3 pb-4">
           <div className="mx-5 ">
             <h2 className="text-white m-0">Articles from GNews</h2>
           </div>
 
           <form onSubmit={this.onSubmit}>
-            <div className="d-flex flex-wrap justify-content-center">
+            <div className="d-flex align-items-end flex-wrap justify-content-center">
               <div className="m-1 ">
                 <Search
                   onSendWord={(inputWord) =>
