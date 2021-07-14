@@ -21,6 +21,7 @@ export default class Main extends Component {
       language: "",
       from: "",
       to: "",
+      showUl: true,
     };
   }
 
@@ -28,9 +29,9 @@ export default class Main extends Component {
     // get articles from gNews, 24h old
     const time =
       new Date(new Date() - 24 * 3600 * 1000).toISOString().split(".")[0] + "Z";
-    console.log(time);
+
     fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=9f76b7fad62719cde83c324e1de64e63
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=8dbeb974cde3adbf5fbdb91d32ed9f61
 
 `
     )
@@ -62,6 +63,9 @@ export default class Main extends Component {
       searchword: this.state.searchword,
     };
 
+    this.setState({
+      showUl: false,
+    });
     console.log(word);
     // TODO: if word unique, add to data base
     // send search word to mongoDB
@@ -76,9 +80,7 @@ export default class Main extends Component {
     const to = this.state.to;
 
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=9f76b7fad62719cde83c324e1de64e63
-
-`
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=8dbeb974cde3adbf5fbdb91d32ed9f61`
     )
       .then(function (response) {
         return response.json();
@@ -105,6 +107,7 @@ export default class Main extends Component {
                     this.setState({ searchword: inputWord })
                   }
                   value={this.state.searchword}
+                  showUl={this.state.showUl}
                 />
               </div>
               <div className="m-1">
