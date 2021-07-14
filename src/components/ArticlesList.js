@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Article from "./Article";
 import axios from "axios";
+import ErrorMessage from "./ErrorMessage";
 
 export default class ArticlesList extends Component {
   constructor(props) {
@@ -33,19 +34,23 @@ export default class ArticlesList extends Component {
   }
 
   articleList = (prop) => {
-    return prop.map((details, index) => {
-      return (
-        <Article
-          title={details.title}
-          image={details.image}
-          description={details.description}
-          url={details.url}
-          time={details.publishedAt}
-          key={index}
-          visited={this.checkVisited(details.title)}
-        />
-      );
-    });
+    if (prop.length > 0) {
+      return prop.map((details, index) => {
+        return (
+          <Article
+            title={details.title}
+            image={details.image}
+            description={details.description}
+            url={details.url}
+            time={details.publishedAt}
+            key={index}
+            visited={this.checkVisited(details.title)}
+          />
+        );
+      });
+    } else {
+      return <ErrorMessage />;
+    }
   };
 
   render() {

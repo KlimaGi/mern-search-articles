@@ -66,8 +66,7 @@ export default class Main extends Component {
     this.setState({
       showUl: false,
     });
-    console.log(word);
-    // TODO: if word unique, add to data base
+
     // send search word to mongoDB
     axios
       .post("http://localhost:5000/searchwords/add", word)

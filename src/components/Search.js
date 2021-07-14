@@ -45,7 +45,7 @@ class Search extends React.Component {
     if (word === "") {
       this.setState({ error: false });
     } else if (
-      word.length >= 2 &&
+      word.length >= 1 &&
       word.length <= 40 &&
       word.match(/^[a-zA-Z0-9 ]*$/gi)
     ) {
