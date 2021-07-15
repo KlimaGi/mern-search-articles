@@ -28,7 +28,6 @@ class Search extends React.Component {
       .catch((err) => {
         console.log(err);
       });
-    console.log(this.state.searchWordsFromDB);
   }
 
   handleFocus() {

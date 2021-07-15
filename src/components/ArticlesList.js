@@ -23,10 +23,6 @@ export default class ArticlesList extends Component {
         const arrTitles = [];
         response.data.map((el) => arrTitles.push(el.title));
         this.setState({ articleTitlesFromMongo: arrTitles });
-        console.log(
-          "articleTitlesFromMongo",
-          this.state.articleTitlesFromMongo
-        );
       }
     });
 

@@ -31,7 +31,7 @@ export default class Main extends Component {
       new Date(new Date() - 24 * 3600 * 1000).toISOString().split(".")[0] + "Z";
 
     fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=34db469be0d798ab5d942cde3f50538e
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=9f76b7fad62719cde83c324e1de64e63
 
 `
     )
@@ -40,7 +40,6 @@ export default class Main extends Component {
       })
       .then((data) => {
         this.setState({ articlesFromGNews: data.articles });
-        console.log("search input 9 data", data.articles);
       });
   }
 
@@ -79,7 +78,7 @@ export default class Main extends Component {
     const to = this.state.to;
 
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=34db469be0d798ab5d942cde3f50538e`
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=9f76b7fad62719cde83c324e1de64e63`
     )
       .then(function (response) {
         return response.json();
