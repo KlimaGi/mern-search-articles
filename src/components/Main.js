@@ -31,7 +31,7 @@ export default class Main extends Component {
       new Date(new Date() - 24 * 3600 * 1000).toISOString().split(".")[0] + "Z";
 
     fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=ad067a361343c4bbf32705a9be330165
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=34db469be0d798ab5d942cde3f50538e
 
 `
     )
@@ -79,7 +79,7 @@ export default class Main extends Component {
     const to = this.state.to;
 
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=ad067a361343c4bbf32705a9be330165`
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=34db469be0d798ab5d942cde3f50538e`
     )
       .then(function (response) {
         return response.json();
@@ -135,6 +135,7 @@ export default class Main extends Component {
             </div>
           </form>
         </div>
+
         <div className="px-5">
           <ArticlesList articlesData={this.state.articlesFromGNews} />
         </div>

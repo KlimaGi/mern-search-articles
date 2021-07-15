@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Article from "./Article";
 import axios from "axios";
+import Spiner from "./Spiner";
 import ErrorMessage from "./ErrorMessage";
 
 export default class ArticlesList extends Component {
@@ -9,6 +10,7 @@ export default class ArticlesList extends Component {
 
     this.state = {
       articleTitlesFromMongo: [],
+      showError: false,
     };
 
     this.articleList = this.articleList.bind(this);
@@ -27,6 +29,8 @@ export default class ArticlesList extends Component {
         );
       }
     });
+
+    setTimeout(() => this.setState({ showError: true }), 6000);
   }
 
   checkVisited(title) {
@@ -49,7 +53,7 @@ export default class ArticlesList extends Component {
         );
       });
     } else {
-      return <ErrorMessage />;
+      return <div>{this.state.showError ? <ErrorMessage /> : <Spiner />}</div>;
     }
   };
 
