@@ -14,7 +14,9 @@ class Time extends Component {
   handleCallback(start, end) {
     const startTime = start._d.toISOString().split(".")[0] + "Z";
     const endTime = end._d.toISOString().split(".")[0] + "Z";
-
+    console.log(moment().subtract(2, "days").calendar());
+    console.log(startTime);
+    console.log(endTime);
     this.props.onSetTime(startTime, endTime);
   }
 
@@ -22,8 +24,8 @@ class Time extends Component {
     return (
       <DateRangePicker
         initialSettings={{
-          startDate: moment().subtract(2, "days").calendar(),
-          endDate: moment().calendar(),
+          startDate: moment().subtract(2, "days"),
+          endDate: moment(),
         }}
         onEvent={this.handleEvent}
         onCallback={this.handleCallback}
