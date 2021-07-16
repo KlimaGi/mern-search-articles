@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Article from "./Article";
 import axios from "axios";
-import Spiner from "./Spiner";
+import Spinner from "./Spinner";
 import ErrorMessage from "./ErrorMessage";
 
 export default class ArticlesList extends Component {
@@ -49,7 +49,7 @@ export default class ArticlesList extends Component {
         );
       });
     } else {
-      return <div>{this.state.showError ? <ErrorMessage /> : <Spiner />}</div>;
+      return <div>{this.state.showError ? <ErrorMessage /> : <Spinner />}</div>;
     }
   };
 
