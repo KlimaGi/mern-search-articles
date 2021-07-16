@@ -1,0 +1,10 @@
+/****** style for date picker element ******/
+
+.date-style {
+  padding: 0.4rem;
+  border-style: none;
+}
+.form-control:focus {
+  border-color: $light;
+  box-shadow: 0 0 0 0.2rem rgba(247, 244, 244, 0.25);
+}

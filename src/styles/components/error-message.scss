@@ -1,0 +1,13 @@
+/****** error message ******/
+
+.error {
+  visibility: visible;
+}
+.error-box {
+  height: 2rem;
+}
+
+.search-error-msg {
+  background: $grey-light;
+  background-image: linear-gradient(90deg, $grey-light, $grey-dark 180%);
+}

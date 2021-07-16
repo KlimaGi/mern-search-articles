@@ -1,0 +1,25 @@
+/****** style for header and button  ******/
+.back-color-style {
+  background-color: $grey-dark;
+  background-image: linear-gradient(
+    90deg,
+    $grey-light,
+    $grey-dark,
+    $grey-light
+  );
+  color: $grey-light;
+}
+
+/****** button and select ******/
+.link-style {
+  text-decoration: none;
+}
+.link-style:hover {
+  color: $dark-purple !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: $light !important;
+  box-shadow: 0 0 0 0.25rem rgba(247, 244, 244, 0.4) !important;
+}

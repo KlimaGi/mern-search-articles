@@ -1,0 +1,24 @@
+/****** search list items style ******/
+.input-back {
+  background: $light !important;
+}
+::placeholder {
+  color: $dark-purple !important;
+}
+.search-list-box {
+  background: $light;
+  width: 10.8rem;
+  position: absolute;
+  top: 4.1rem;
+  z-index: 1;
+}
+.li-item {
+  background: $light;
+  list-style: none;
+  width: 10.7rem;
+  padding-right: -3rem;
+}
+.li-item:hover {
+  background: $light;
+  background-image: linear-gradient(90deg, $light, $grey-light 50%);
+}
