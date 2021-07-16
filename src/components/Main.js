@@ -91,7 +91,7 @@ export default class Main extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container-fluid g-0">
         <div className="d-flex align-items-end flex-wrap justify-content-start  back-color-style px-5 bt-3 pb-4">
           <div className="mx-5 ">
             <h2 className="text-white m-0">Articles from GNews</h2>
