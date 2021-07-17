@@ -5,14 +5,13 @@ import ArticlesList from "./ArticlesList";
 import Search from "./Search";
 import Language from "./Language";
 import Time from "./Time";
+import moment from "moment";
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.onChangeSearchWord = this.onChangeSearchWord.bind(this);
-    this.handleClick = this.handleClick.bind(this);
 
     this.state = {
       searchword: "",
@@ -21,19 +20,15 @@ export default class Main extends Component {
       language: "",
       from: "",
       to: "",
-      showUl: true,
     };
   }
 
   componentDidMount() {
     // get articles from gNews, 24h old
-    const time =
-      new Date(new Date() - 24 * 3600 * 1000).toISOString().split(".")[0] + "Z";
-
+    const time = moment().subtract(2, "days").toISOString().split(".")[0] + "Z";
+    console.log("time cdm", time);
     fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=34db469be0d798ab5d942cde3f50538e
-
-`
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5`
     )
       .then(function (response) {
         return response.json();
@@ -43,30 +38,13 @@ export default class Main extends Component {
       });
   }
 
-  handleClick() {
-    this.setState({
-      searchword: "",
-    });
-  }
-
-  onChangeSearchWord(e) {
-    this.setState({
-      searchword: e.target.value,
-    });
-  }
-
   onSubmit(e) {
     e.preventDefault();
 
+    // send search word to mongoDB
     const word = {
       searchword: this.state.searchword,
     };
-
-    this.setState({
-      showUl: false,
-    });
-
-    // send search word to mongoDB
     axios
       .post("http://localhost:5000/searchwords/add", word)
       .then((res) => console.log(res.data));
@@ -78,14 +56,13 @@ export default class Main extends Component {
     const to = this.state.to;
 
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=34db469be0d798ab5d942cde3f50538e`
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5`
     )
       .then(function (response) {
         return response.json();
       })
       .then((data) => {
         this.setState({ articlesFromGNews: data.articles });
-        console.log(data.articles);
       });
   }
 
@@ -105,7 +82,7 @@ export default class Main extends Component {
                     this.setState({ searchword: inputWord })
                   }
                   value={this.state.searchword}
-                  showUl={this.state.showUl}
+                  searchWordsFromDB={this.state.searchwords}
                 />
               </div>
               <div className="m-1">
