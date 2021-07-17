@@ -24,8 +24,6 @@ export default class Button extends Component {
       .post("http://localhost:5000/articles/add", articleTitle)
       .then((res) => console.log(res.data));
 
-    console.log(this.state.title);
-
     window.setTimeout(function () {
       window.location.reload();
     }, 1000);
@@ -33,14 +31,16 @@ export default class Button extends Component {
 
   render() {
     return (
-      <div className="d-flex justify-content-center">
+      <div>
         <a
           href={this.props.linkTo}
           target="_blank"
           onClick={this.writeToDB}
-          className="text-white link-style p-2"
+          className="link-style"
         >
-          Read Article
+          <div className="d-flex justify-content-center align-items-center p-2 buton-style">
+            Read Article
+          </div>
         </a>
       </div>
     );

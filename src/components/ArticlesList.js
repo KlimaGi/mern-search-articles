@@ -21,15 +21,13 @@ export default class ArticlesList extends Component {
     axios.get("http://localhost:5000/articles").then((response) => {
       if (response.data.length > 0) {
         const arrTitles = [];
-        response.data.map((el) => arrTitles.push(el.title));
+        response.data.map((object) => arrTitles.push(object.title));
         this.setState({ articleTitlesFromMongo: arrTitles });
       }
     });
-    console.log("CDM ArticalList.js", this.state.articleTitlesFromMongo);
+
     setTimeout(() => {
       this.setState({ showError: true });
-
-      console.log("CDM ArticalList.js", this.state.articleTitlesFromMongo);
     }, 6000);
   }
 
@@ -46,7 +44,6 @@ export default class ArticlesList extends Component {
             image={details.image}
             description={details.description}
             url={details.url}
-            time={details.publishedAt}
             key={index}
             visited={this.checkVisited(details.title)}
           />

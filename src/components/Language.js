@@ -3,14 +3,14 @@ import React, { Component } from "react";
 class Language extends Component {
   constructor(props) {
     super(props);
-    this.state = { DDl1: [], l: "" };
+    this.state = { languages: [] };
 
-    this.onClickL = this.onClickL.bind(this);
+    this.onClickLang = this.onClickLang.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      DDl1: [
+      languages: [
         { key: "Arabic", name: "ar" },
         { key: "German", name: "de" },
         { key: "Greek", name: "el" },
@@ -37,12 +37,13 @@ class Language extends Component {
     });
   }
 
-  onClickL = (e) => {
-    const langName = this.state.DDl1.filter((el) => {
-      if (e.target.value == el.key) {
+  onClickLang = (event) => {
+    const langName = this.state.languages.filter((el) => {
+      if (event.target.value === el.key) {
         return el.name;
       }
     });
+
     this.props.onClickLanguage(langName[0].name);
   };
 
@@ -51,10 +52,10 @@ class Language extends Component {
       <div>
         <select
           className="form-select text-color mx-2 input-back"
-          onChange={this.onClickL}
+          onChange={this.onClickLang}
         >
           <option className="text-color">Select Language</option>
-          {this.state.DDl1.map((lang) => {
+          {this.state.languages.map((lang) => {
             return <option>{lang.key}</option>;
           })}
         </select>

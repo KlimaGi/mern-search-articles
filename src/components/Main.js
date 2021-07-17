@@ -27,7 +27,7 @@ export default class Main extends Component {
     // get articles from gNews, 24h old
     const time = moment().subtract(2, "days").toISOString().split(".")[0] + "Z";
     fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5`
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=9f76b7fad62719cde83c324e1de64e63`
     )
       .then(function (response) {
         return response.json();
@@ -37,8 +37,8 @@ export default class Main extends Component {
       });
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  onSubmit(event) {
+    event.preventDefault();
 
     // send search word to mongoDB
     const word = {
@@ -46,7 +46,7 @@ export default class Main extends Component {
     };
     axios
       .post("http://localhost:5000/searchwords/add", word)
-      .then((res) => console.log(res.data));
+      .then((response) => console.log(response.data));
 
     // get gNews articles by searchword
     const search = this.state.searchword || "news";
@@ -55,7 +55,7 @@ export default class Main extends Component {
     const to = this.state.to;
 
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5`
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=9f76b7fad62719cde83c324e1de64e63`
     )
       .then(function (response) {
         return response.json();

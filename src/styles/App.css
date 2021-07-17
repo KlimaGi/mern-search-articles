@@ -51,10 +51,14 @@ body {
 .link-style {
   text-decoration: none;
 }
-
-.link-style:hover {
+.buton-style {
+  color: #f8f5f5;
+}
+.buton-style:hover {
   color: #864586 !important;
 }
+/* .link-style:hover {
+} */
 
 .form-control:focus,
 .form-select:focus {

@@ -5,9 +5,9 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showResultsUl: false,
       filteredSearchWordsFromDB: [],
       searchWordsFromDB: [],
+      showResultsUl: false,
       error: false,
     };
 
@@ -16,17 +16,15 @@ class Search extends React.Component {
     this.handleFocus = this.handleFocus.bind(this);
   }
 
-  componentDidMount() {}
-
   handleFocus = () => {
     this.props.onSendWord("");
-    this.setState({ filteredSearchWordsFromDB: [] });
+    // get from mongoDB searchwords arr
     axios
       .get("http://localhost:5000/searchwords")
-      .then((res) => {
-        const arr2 = [];
-        res.data.map((name) => arr2.push(name.searchword));
-        this.setState({ searchWordsFromDB: arr2 });
+      .then((response) => {
+        const tempArr = [];
+        response.data.map((object) => tempArr.push(object.searchword));
+        this.setState({ searchWordsFromDB: tempArr });
       })
       .catch((err) => {
         console.log(err);
@@ -34,7 +32,6 @@ class Search extends React.Component {
   };
 
   handleChange(event) {
-    this.setState({ filteredSearchWordsFromDB: [] });
     this.props.onSendWord(event.target.value);
 
     const word = event.target.value;
@@ -47,9 +44,9 @@ class Search extends React.Component {
       word.match(/^[a-zA-Z0-9 ]*$/gi)
     ) {
       const filteredSearchWordsFromDB = this.state.searchWordsFromDB.filter(
-        (el) => {
-          if (el.indexOf(word) !== -1) {
-            return el;
+        (wordFromDB) => {
+          if (wordFromDB.indexOf(word.toLowerCase()) !== -1) {
+            return wordFromDB;
           }
         }
       );
