@@ -25,8 +25,12 @@ export default class ArticlesList extends Component {
         this.setState({ articleTitlesFromMongo: arrTitles });
       }
     });
+    console.log("CDM ArticalList.js", this.state.articleTitlesFromMongo);
+    setTimeout(() => {
+      this.setState({ showError: true });
 
-    setTimeout(() => this.setState({ showError: true }), 6000);
+      console.log("CDM ArticalList.js", this.state.articleTitlesFromMongo);
+    }, 6000);
   }
 
   checkVisited(title) {

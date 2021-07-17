@@ -27,7 +27,6 @@ class Search extends React.Component {
         const arr2 = [];
         res.data.map((name) => arr2.push(name.searchword));
         this.setState({ searchWordsFromDB: arr2 });
-        console.log("handleFocus", this.state.searchWordsFromDB);
       })
       .catch((err) => {
         console.log(err);
@@ -36,7 +35,6 @@ class Search extends React.Component {
 
   handleChange(event) {
     this.setState({ filteredSearchWordsFromDB: [] });
-    console.log("this.state.searchWordsFromDB", this.state.searchWordsFromDB);
     this.props.onSendWord(event.target.value);
 
     const word = event.target.value;
@@ -48,18 +46,12 @@ class Search extends React.Component {
       word.length <= 40 &&
       word.match(/^[a-zA-Z0-9 ]*$/gi)
     ) {
-      console.log(word);
-      console.log(this.state.searchWordsFromDB);
       const filteredSearchWordsFromDB = this.state.searchWordsFromDB.filter(
         (el) => {
           if (el.indexOf(word) !== -1) {
             return el;
           }
         }
-      );
-      console.log(
-        "this.state.filteredSearchWordsFromDB",
-        this.state.filteredSearchWordsFromDB
       );
       this.setState({
         filteredSearchWordsFromDB: filteredSearchWordsFromDB,
@@ -102,7 +94,6 @@ class Search extends React.Component {
           value={this.props.value}
           onChange={this.handleChange}
           onFocus={this.handleFocus}
-          //onBlur={this.handleBlur}
           placeholder="Enter search word"
         />
 

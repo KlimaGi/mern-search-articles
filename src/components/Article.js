@@ -9,7 +9,7 @@ const Article = (props) => (
 
       {props.visited && (
         <div className="visited rounded-circle text-center p-1">
-          <i class="fa fa-eye"></i>
+          <i className="fa fa-eye"></i>
         </div>
       )}
 

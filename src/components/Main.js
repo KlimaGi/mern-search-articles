@@ -26,7 +26,6 @@ export default class Main extends Component {
   componentDidMount() {
     // get articles from gNews, 24h old
     const time = moment().subtract(2, "days").toISOString().split(".")[0] + "Z";
-    console.log("time cdm", time);
     fetch(
       `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=2c53d3cc949c9dde0689a4f7ccaad9b5`
     )

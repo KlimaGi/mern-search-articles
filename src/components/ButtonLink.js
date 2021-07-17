@@ -9,8 +9,9 @@ export default class Button extends Component {
 
     this.writeToDB = this.writeToDB.bind(this);
   }
-  componentDidMount() {
-    this.setState({ title: this.props.title });
+
+  static getDerivedStateFromProps(props, state) {
+    return { title: props.title };
   }
 
   writeToDB = () => {
@@ -18,8 +19,6 @@ export default class Button extends Component {
       title: this.state.title,
     };
 
-    console.log(articleTitle);
-    // TODO: if word unique, add to data base
     // send search word to mongoDB
     axios
       .post("http://localhost:5000/articles/add", articleTitle)
