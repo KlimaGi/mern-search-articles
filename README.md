@@ -1,1 +1,1 @@
-Load backend: cd backend; nodemon start. Frontend: npm start.
+Load backend: cd backend; nodemon server. Frontend: npm start.
