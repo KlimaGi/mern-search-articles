@@ -15,7 +15,6 @@ export default class Main extends Component {
 
     this.state = {
       searchword: "",
-      searchwords: [],
       articlesFromGNews: [],
       language: "",
       from: "",
@@ -81,7 +80,6 @@ export default class Main extends Component {
                     this.setState({ searchword: inputWord })
                   }
                   value={this.state.searchword}
-                  searchWordsFromDB={this.state.searchwords}
                 />
               </div>
               <div className="m-1">

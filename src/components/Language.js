@@ -45,6 +45,7 @@ class Language extends Component {
     });
 
     this.props.onClickLanguage(langName[0].name);
+    //console.log("langName", langName);
   };
 
   render() {

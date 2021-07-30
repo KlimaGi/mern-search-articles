@@ -14,7 +14,7 @@ class Time extends Component {
   handleCallback(start, end) {
     const startTime = start._d.toISOString().split(".")[0] + "Z";
     const endTime = end._d.toISOString().split(".")[0] + "Z";
-
+    console.log(start._d.toISOString());
     this.props.onSetTime(startTime, endTime);
   }
 
@@ -25,7 +25,6 @@ class Time extends Component {
           startDate: moment().subtract(2, "days"),
           endDate: moment(),
         }}
-        onEvent={this.handleEvent}
         onCallback={this.handleCallback}
       >
         <button type="button" className="btn btn-outline-light mx-2 px-3">

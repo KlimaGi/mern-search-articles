@@ -94,7 +94,8 @@ body {
 .li-item {
   background: #f3f3f3;
   list-style: none;
-  width: 10.7rem;
+  list-style-position: outside;
+  width: 11.7rem;
   padding-right: -3rem;
 }
 
