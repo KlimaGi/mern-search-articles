@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import Article from "./Article";
 import axios from "axios";
 import Spinner from "./Spinner";
 import ErrorMessage from "./ErrorMessage";
 
-export default class ArticlesList extends Component {
+export default class ArticlesList extends React.Component {
   constructor(props) {
     super(props);
 

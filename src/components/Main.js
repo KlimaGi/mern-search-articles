@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "font-awesome/css/font-awesome.min.css";
 import axios from "axios";
 import ArticlesList from "./ArticlesList";
@@ -7,7 +7,7 @@ import Language from "./Language";
 import Time from "./Time";
 import moment from "moment";
 
-export default class Main extends Component {
+export default class Main extends React.Component {
   constructor(props) {
     super(props);
 

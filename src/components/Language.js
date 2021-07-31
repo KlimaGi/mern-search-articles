@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Language extends Component {
+class Language extends React.Component {
   constructor(props) {
     super(props);
     this.state = { languages: [] };

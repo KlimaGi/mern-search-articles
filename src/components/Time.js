@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import DateRangePicker from "react-bootstrap-daterangepicker";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
 import moment from "moment";
 
-class Time extends Component {
+class Time extends React.Component {
   constructor(props) {
     super(props);
 
