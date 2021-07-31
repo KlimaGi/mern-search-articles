@@ -18,6 +18,7 @@ class Search extends React.Component {
 
   handleFocus = () => {
     this.props.onSendWord("");
+
     // get from mongoDB searchwords arr
     axios
       .get("http://localhost:5000/searchwords")
@@ -64,9 +65,6 @@ class Search extends React.Component {
   }
 
   selectWord(word) {
-    this.setState({
-      filteredSearchWordsFromDB: [],
-    });
     this.props.onSendWord(word);
   }
 

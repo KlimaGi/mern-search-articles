@@ -25,10 +25,6 @@ export default class ArticlesList extends Component {
         this.setState({ articleTitlesFromMongo: arrTitles });
       }
     });
-
-    setTimeout(() => {
-      this.setState({ showError: true });
-    }, 6000);
   }
 
   checkVisited(title) {
@@ -50,6 +46,9 @@ export default class ArticlesList extends Component {
         );
       });
     } else {
+      setTimeout(() => {
+        this.setState({ showError: true });
+      }, 6000);
       return <div>{this.state.showError ? <ErrorMessage /> : <Spinner />}</div>;
     }
   };
