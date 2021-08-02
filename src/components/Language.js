@@ -3,13 +3,7 @@ import React from "react";
 class Language extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { languages: [] };
-
-    this.onClickLang = this.onClickLang.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({
+    this.state = {
       languages: [
         { key: "Arabic", name: "ar" },
         { key: "German", name: "de" },
@@ -34,12 +28,15 @@ class Language extends React.Component {
         { key: "Ukrainian", name: "uk" },
         { key: "Chinese", name: "zh" },
       ],
-    });
+    };
+
+    this.onClickLang = this.onClickLang.bind(this);
   }
 
   onClickLang = (event) => {
     const langName = this.state.languages.filter((el) => {
       if (event.target.value === el.key) {
+        //console.log("el.name", el.name);
         return el.name;
       }
     });
