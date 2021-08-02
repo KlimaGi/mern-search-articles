@@ -2933,7 +2933,7 @@
   "resolved" "https://registry.npmjs.org/dotenv-expand/-/dotenv-expand-4.2.0.tgz"
   "version" "4.2.0"
 
-"dotenv@4.0.0":
+"dotenv@^4.0.0", "dotenv@4.0.0":
   "integrity" "sha1-hk7xN5rO1Vzm+V3r7NzhefegzR0="
   "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-4.0.0.tgz"
   "version" "4.0.0"

@@ -14,7 +14,7 @@ export default class Main extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      searchword: "",
+      searchWord: "",
       articlesFromGNews: [],
       language: "",
       from: "",
@@ -41,14 +41,14 @@ export default class Main extends React.Component {
 
     // send search word to mongoDB
     const word = {
-      searchword: this.state.searchword,
+      searchword: this.state.searchWord,
     };
     axios
       .post("http://localhost:5000/searchwords/add", word)
       .then((response) => console.log(response.data));
 
     // get gNews articles by searchword
-    const search = this.state.searchword || "news";
+    const search = this.state.searchWord || "news";
     const lang = this.state.language || "en";
     const from = this.state.from;
     const to = this.state.to;
@@ -77,9 +77,9 @@ export default class Main extends React.Component {
               <div className="m-1 ">
                 <Search
                   onSendWord={(inputWord) =>
-                    this.setState({ searchword: inputWord })
+                    this.setState({ searchWord: inputWord })
                   }
-                  value={this.state.searchword}
+                  value={this.state.searchWord}
                 />
               </div>
               <div className="m-1">
