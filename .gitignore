@@ -2,8 +2,8 @@
 
 # keys
 .env
-\#.env
-# backend/.env
+
+backend/.env
 
 # dependencies
 /node_modules
