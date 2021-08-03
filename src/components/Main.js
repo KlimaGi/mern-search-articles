@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import React from "react";
 import "font-awesome/css/font-awesome.min.css";
 import axios from "axios";
@@ -6,6 +7,7 @@ import Search from "./Search";
 import Language from "./Language";
 import Time from "./Time";
 import moment from "moment";
+require("dotenv").config();
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -25,8 +27,9 @@ export default class Main extends React.Component {
   componentDidMount() {
     // get articles from gNews, 24h old
     const time = moment().subtract(2, "days").toISOString().split(".")[0] + "Z";
+    const token = process.env.REACT_APP_GN_TOKEN;
     fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=9f76b7fad62719cde83c324e1de64e63`
+      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=${token}`
     )
       .then(function (response) {
         return response.json();
@@ -52,9 +55,9 @@ export default class Main extends React.Component {
     const lang = this.state.language || "en";
     const from = this.state.from;
     const to = this.state.to;
-
+    const token = process.env.REACT_APP_GN_TOKEN;
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=9f76b7fad62719cde83c324e1de64e63`
+      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=${token}`
     )
       .then(function (response) {
         return response.json();

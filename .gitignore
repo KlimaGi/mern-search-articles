@@ -2,7 +2,6 @@
 
 # keys
 .env
-
 backend/.env
 
 # dependencies
