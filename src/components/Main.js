@@ -7,6 +7,7 @@ import Search from "./Search";
 import Language from "./Language";
 import Time from "./Time";
 import moment from "moment";
+import SearchIn from "./SearchIn";
 require("dotenv").config();
 
 export default class Main extends React.Component {
@@ -18,6 +19,7 @@ export default class Main extends React.Component {
     this.state = {
       searchWord: "",
       articlesFromGNews: [],
+      searchIn: "",
       language: "",
       from: "",
       to: "",
@@ -53,11 +55,12 @@ export default class Main extends React.Component {
     // get gNews articles by searchword
     const search = this.state.searchWord || "news";
     const lang = this.state.language || "en";
+    const searchWhere = this.state.searchIn || "content";
     const from = this.state.from;
     const to = this.state.to;
     const token = process.env.REACT_APP_GN_TOKEN;
     fetch(
-      `https://gnews.io/api/v4/search?q=${search}&in=content&lang=${lang}&from=${from}&to=${to}&max=9&token=${token}`
+      `https://gnews.io/api/v4/search?q=${search}&in=${searchWhere}&lang=${lang}&from=${from}&to=${to}&max=9&token=${token}`
     )
       .then(function (response) {
         return response.json();
@@ -76,7 +79,7 @@ export default class Main extends React.Component {
           </div>
 
           <form onSubmit={this.onSubmit}>
-            <div className="d-flex align-items-end flex-wrap justify-content-center">
+            <div className="d-flex align-items-end flex-wrap justify-content-around">
               <div className="m-1 ">
                 <Search
                   onSendWord={(inputWord) =>
@@ -85,7 +88,14 @@ export default class Main extends React.Component {
                   value={this.state.searchWord}
                 />
               </div>
-              <div className="m-1">
+              <div className="my-1 mx-2">
+                <SearchIn
+                  onClickSearchInSet={(item) => {
+                    this.setState({ searchIn: item });
+                  }}
+                />
+              </div>
+              <div className="my-1 mx-2">
                 <Language
                   onClickLanguage={(lang) => {
                     this.setState({ language: lang });
@@ -93,13 +103,14 @@ export default class Main extends React.Component {
                 />
               </div>
 
-              <div className="px-2 m-1">
+              <div className="px-2 my-1 mx-0">
                 <Time
                   onSetTime={(from, to) => {
                     this.setState({ from, to });
                   }}
                 />
               </div>
+
               <div className="m-1">
                 <button
                   type="submit"
