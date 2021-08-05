@@ -3,6 +3,7 @@ import Article from "./Article";
 import axios from "axios";
 import Spinner from "./Spinner";
 import ErrorMessage from "./ErrorMessage";
+import { SearchContext } from "../context/searchContext";
 
 export default class ArticlesList extends React.Component {
   constructor(props) {
@@ -31,9 +32,9 @@ export default class ArticlesList extends React.Component {
     return this.state.articleTitlesFromMongo.includes(title) ? true : false;
   }
 
-  articleList = (prop) => {
-    if (prop.length > 0) {
-      return prop.map((details, index) => {
+  articleList = (list) => {
+    if (list.length > 0) {
+      return list.map((details, index) => {
         return (
           <Article
             title={details.title}
@@ -55,9 +56,13 @@ export default class ArticlesList extends React.Component {
 
   render() {
     return (
-      <div className="d-flex flex-wrap justify-content-evenly my-3">
-        {this.articleList(this.props.articlesData)}
-      </div>
+      <SearchContext.Consumer>
+        {({ articlesFromGNews }) => (
+          <div className="d-flex flex-wrap justify-content-evenly my-3">
+            {this.articleList(articlesFromGNews)}
+          </div>
+        )}
+      </SearchContext.Consumer>
     );
   }
 }
