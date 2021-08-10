@@ -82,7 +82,9 @@ body {
 ::placeholder {
   color: #864586 !important;
 }
-
+.parent-box {
+  position: relative;
+}
 .search-list-box {
   background: #f3f3f3;
   width: 10.8rem;
