@@ -1,4 +1,3 @@
-import dotenv from "dotenv";
 import React from "react";
 import "font-awesome/css/font-awesome.min.css";
 import axios from "axios";
@@ -6,7 +5,7 @@ import Header from "./Header";
 import ArticlesList from "./ArticlesList";
 import moment from "moment";
 import { SearchContext } from "../context/searchContext";
-require("dotenv").config();
+// require("dotenv").config();
 
 export default class Main extends React.Component {
   constructor(props) {
