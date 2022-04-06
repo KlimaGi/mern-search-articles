@@ -8,6 +8,6 @@
 }
 
 .search-error-msg {
-  background: #e6e4e4;
-  background-image: linear-gradient(90deg, #e6e4e4, #8f8f8f 180%);
+  background: $creamy-grey;
+  background-image: linear-gradient(90deg, $creamy-grey, $grey-dark 180%);
 }

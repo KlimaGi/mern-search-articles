@@ -8,5 +8,5 @@
 
 .form-control:focus {
   border-color: $light;
-  box-shadow: 0 0 0 0.2rem #f7f4f440;
+  box-shadow: 0 0 0 0.2rem $light-shadow;
 }

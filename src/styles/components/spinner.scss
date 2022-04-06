@@ -1,6 +1,6 @@
 .loader {
-  background: rgba(250, 247, 247, 0.226);
-  background: radial-gradient(rgba(34, 34, 34, 0.075), rgba(65, 65, 65, 0.096));
+  background: $light-back;
+  background: radial-gradient($back-gradient-1, $back-gradient-2);
   bottom: 0;
   left: 0;
   overflow: hidden;
@@ -61,31 +61,31 @@
 }
 
 .loader-line-wrap:nth-child(1) .loader-line {
-  border-color: hsl(300, 10%, 85%);
+  border-color: $purple-grey-1;
   height: 90px;
   width: 90px;
   top: 7px;
 }
 .loader-line-wrap:nth-child(2) .loader-line {
-  border-color: hsl(300, 10%, 70%);
+  border-color: $purple-grey-2;
   height: 76px;
   width: 76px;
   top: 14px;
 }
 .loader-line-wrap:nth-child(3) .loader-line {
-  border-color: hsl(300, 10%, 55%);
+  border-color: $purple-grey-3;
   height: 62px;
   width: 62px;
   top: 21px;
 }
 .loader-line-wrap:nth-child(4) .loader-line {
-  border-color: hsl(300, 10%, 40%);
+  border-color: $purple-grey-4;
   height: 48px;
   width: 48px;
   top: 28px;
 }
 .loader-line-wrap:nth-child(5) .loader-line {
-  border-color: hsl(300, 10%, 35%);
+  border-color: $purple-grey-5;
   height: 34px;
   width: 34px;
   top: 35px;
