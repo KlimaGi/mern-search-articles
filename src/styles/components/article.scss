@@ -14,10 +14,27 @@
   bottom: 0;
 }
 
+/****** button ******/
+.link-style {
+  text-decoration: none;
+}
+.buton-style {
+  color: #f8f5f5;
+}
+.buton-style:hover {
+  color: #864586 !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #fdfdfd !important;
+  box-shadow: 0 0 0 0.25rem #f7f4f466 !important;
+}
+
 /****** for visited articles style ******/
 
 .visited {
-  background-color: rgba(220, 220, 220, 0.6);
+  background-color: #dcdcdc99;
   width: 2.8rem;
   height: 2.8rem;
   position: absolute;

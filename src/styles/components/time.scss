@@ -3,8 +3,10 @@
 .date-style {
   padding: 0.4rem;
   border-style: none;
+  color: $dark-purple;
 }
+
 .form-control:focus {
   border-color: $light;
-  box-shadow: 0 0 0 0.2rem rgba(247, 244, 244, 0.25);
+  box-shadow: 0 0 0 0.2rem #f7f4f440;
 }

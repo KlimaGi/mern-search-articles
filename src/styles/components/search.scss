@@ -1,24 +1,29 @@
 /****** search list items style ******/
 .input-back {
-  background: $light !important;
+  background: #f3f3f3 !important;
 }
 ::placeholder {
   color: $dark-purple !important;
 }
+.parent-box {
+  position: relative;
+}
+
 .search-list-box {
-  background: $light;
+  background: #f3f3f3;
   width: 10.8rem;
   position: absolute;
   top: 4.1rem;
   z-index: 1;
 }
 .li-item {
-  background: $light;
+  background: #f3f3f3;
   list-style: none;
-  width: 10.7rem;
+  list-style-position: outside;
+  width: 11.7rem;
   padding-right: -3rem;
 }
 .li-item:hover {
-  background: $light;
-  background-image: linear-gradient(90deg, $light, $grey-light 50%);
+  background: #e6e4e4;
+  background-image: linear-gradient(90deg, #f3f3f3, #e9e9e9 50%);
 }

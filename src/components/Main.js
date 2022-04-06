@@ -5,7 +5,6 @@ import Header from "./Header";
 import ArticlesList from "./ArticlesList";
 import moment from "moment";
 import { SearchContext } from "../context/searchContext";
-// require("dotenv").config();
 
 export default class Main extends React.Component {
   constructor(props) {
