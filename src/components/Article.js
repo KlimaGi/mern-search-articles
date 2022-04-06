@@ -1,8 +1,8 @@
 import React from "react";
-import ButtonLink from "./ButtonLink";
+import { Button } from "./ButtonLink";
 import "font-awesome/css/font-awesome.min.css";
 
-const Article = (props) => (
+export const Article = (props) => (
   <div>
     <div className="article-box m-4">
       <img src={props.image} className="img-style" alt="" />
@@ -21,10 +21,8 @@ const Article = (props) => (
         </p>
       </div>
       <div className="bottom container-fluid rounded-0 back-color-style">
-        <ButtonLink title={props.title} linkTo={props.url} />
+        <Button title={props.title} linkTo={props.url} />
       </div>
     </div>
   </div>
 );
-
-export default Article;

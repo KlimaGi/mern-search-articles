@@ -1,12 +1,12 @@
 import React from "react";
 import "font-awesome/css/font-awesome.min.css";
 import axios from "axios";
-import Header from "./Header";
-import ArticlesList from "./ArticlesList";
+import { Header } from "./Header";
+import { ArticlesList } from "./ArticlesList";
 import moment from "moment";
 import { SearchContext } from "../context/searchContext";
 
-export default class Main extends React.Component {
+export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

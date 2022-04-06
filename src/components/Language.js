@@ -1,6 +1,6 @@
 import React from "react";
 
-class Language extends React.Component {
+export class Language extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -61,5 +61,3 @@ class Language extends React.Component {
     );
   }
 }
-
-export default Language;

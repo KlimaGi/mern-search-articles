@@ -1,12 +1,12 @@
 import React from "react";
 import "font-awesome/css/font-awesome.min.css";
-import Search from "./Search";
-import SearchIn from "./SearchIn";
-import Language from "./Language";
-import Time from "./Time";
+import { Search } from "./Search";
+import { SearchIn } from "./SearchIn";
+import { Language } from "./Language";
+import { Time } from "./Time";
 import { SearchContext } from "../context/searchContext";
 
-export default class Header extends React.Component {
+export class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-class Search extends React.Component {
+export class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -121,5 +121,3 @@ function WordsList(props) {
     </li>
   );
 }
-
-export default Search;

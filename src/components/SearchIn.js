@@ -1,6 +1,6 @@
 import React from "react";
 
-class SearchIn extends React.Component {
+export class SearchIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,4 +36,3 @@ class SearchIn extends React.Component {
     );
   }
 }
-export default SearchIn;

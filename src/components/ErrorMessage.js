@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class ErrorMessage extends React.Component {
+export class ErrorMessage extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);

@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-daterangepicker/daterangepicker.css";
 import moment from "moment";
 
-class Time extends React.Component {
+export class Time extends React.Component {
   constructor(props) {
     super(props);
 
@@ -34,4 +34,3 @@ class Time extends React.Component {
     );
   }
 }
-export default Time;

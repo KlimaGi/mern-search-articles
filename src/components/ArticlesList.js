@@ -1,11 +1,11 @@
 import React from "react";
-import Article from "./Article";
+import { Article } from "./Article";
 import axios from "axios";
-import Spinner from "./Spinner";
-import ErrorMessage from "./ErrorMessage";
+import { Spinner } from "./Spinner";
+import { ErrorMessage } from "./ErrorMessage";
 import { SearchContext } from "../context/searchContext";
 
-export default class ArticlesList extends React.Component {
+export class ArticlesList extends React.Component {
   constructor(props) {
     super(props);
 

@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-export default class Button extends React.Component {
+export class Button extends React.Component {
   constructor(props) {
     super(props);
 
