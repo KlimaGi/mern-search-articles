@@ -1,9 +1,9 @@
 import React from "react";
-import "font-awesome/css/font-awesome.min.css";
 import axios from "axios";
+import moment from "moment";
+import "font-awesome/css/font-awesome.min.css";
 import { Header } from "./Header";
 import { ArticlesList } from "./ArticlesList";
-import moment from "moment";
 import { SearchContext } from "../context/searchContext";
 
 export class Main extends React.Component {

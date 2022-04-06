@@ -1,6 +1,6 @@
 import React from "react";
-import { Article } from "./Article";
 import axios from "axios";
+import { Article } from "./Article";
 import { Spinner } from "./Spinner";
 import { ErrorMessage } from "./ErrorMessage";
 import { SearchContext } from "../context/searchContext";
