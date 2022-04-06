@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { Article } from "./Article";
-import { Spinner } from "./Spinner";
-import { ErrorMessage } from "./ErrorMessage";
+import { Spinner } from "./common/Spinner";
+import { ErrorMessage } from "./common/ErrorMessage";
 import { SearchContext } from "../context/searchContext";
 
 export class ArticlesList extends React.Component {
