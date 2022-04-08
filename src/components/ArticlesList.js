@@ -20,7 +20,7 @@ export const ArticlesList = () => {
     });
   });
   const checkVisited = (title) => {
-    articleTitlesFromMongo.includes(title);
+    return articleTitlesFromMongo.includes(title);
   };
 
   const articleList = (list) => {
