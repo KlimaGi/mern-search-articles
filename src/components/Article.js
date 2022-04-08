@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "./ButtonLink";
+import { ButtonLink } from "./ButtonLink";
 import "font-awesome/css/font-awesome.min.css";
 
 export const Article = (props) => (
@@ -21,7 +21,7 @@ export const Article = (props) => (
         </p>
       </div>
       <div className="bottom container-fluid rounded-0 back-color-style">
-        <Button title={props.title} linkTo={props.url} />
+        <ButtonLink propTitle={props.title} linkTo={props.url} />
       </div>
     </div>
   </div>
