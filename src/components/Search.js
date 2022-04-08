@@ -37,19 +37,15 @@ export class Search extends React.Component {
 
     const word = event.target.value;
     //console.log("input-word", word);
-    if (word === "") {
+    if (!word) {
       this.setState({ error: false, showResultsUl: false });
     } else if (
-      word.length >= 1 &&
+      word.length >= 3 &&
       word.length <= 40 &&
-      word.match(/^[a-zA-Z0-9 ]*$/gi)
+      word.match(/^[a-zA-Z0-9]*$/gi)
     ) {
       const filteredSearchWordsFromDB = this.state.searchWordsFromDB.filter(
-        (wordFromDB) => {
-          if (wordFromDB.indexOf(word.toLowerCase()) !== -1) {
-            return wordFromDB;
-          }
-        }
+        (wordFromDB) => wordFromDB.indexOf(word.toLowerCase()) !== -1
       );
       this.setState({
         filteredSearchWordsFromDB: filteredSearchWordsFromDB,
