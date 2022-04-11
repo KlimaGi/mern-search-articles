@@ -18,9 +18,11 @@ export const ArticlesList = () => {
         setArticleTitlesFromMongo(arrTitles);
       }
     });
-  });
+  }, []);
   const checkVisited = (title) => {
-    return articleTitlesFromMongo.includes(title);
+    const isTile = articleTitlesFromMongo.includes(title);
+    console.log(["isTitle", isTile]);
+    return isTile;
   };
 
   const articleList = (list) => {

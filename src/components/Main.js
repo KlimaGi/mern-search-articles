@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import "font-awesome/css/font-awesome.min.css";
@@ -6,18 +6,11 @@ import { Header } from "./Header";
 import { ArticlesList } from "./ArticlesList";
 import { SearchContext } from "../context/searchContext";
 
-export class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchWord: "",
-      articlesFromGNews: [],
-    };
+export const Main = () => {
+  const [searchWord, setSearchWord] = useState("");
+  const [articlesFromGNews, setArticlesFromGNews] = useState([]);
 
-    this.handleSearch = this.handleSearch.bind(this);
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     // get articles from gNews, 24h old
     const time = moment().subtract(2, "days").toISOString().split(".")[0] + "Z";
     const token = process.env.REACT_APP_GN_TOKEN;
@@ -28,21 +21,21 @@ export class Main extends React.Component {
         return response.json();
       })
       .then((data) => {
-        this.setState({ articlesFromGNews: data.articles });
-      });
-  }
+        setArticlesFromGNews(data.articles);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
-  handleSearch(searchword, searchIn, language, fromTime, toTime) {
-    this.setState({
-      searchWord: searchword,
-    });
+  const handleSearch = (searchword, searchIn, language, fromTime, toTime) => {
+    setSearchWord(searchword);
+
     // send search word to mongoDB
-    const word = {
-      searchword: searchword,
-    };
     axios
-      .post("http://localhost:5000/searchwords/add", word)
-      .then((response) => console.log(response.data));
+      .post("http://localhost:5000/searchwords/add", {
+        searchword: searchword,
+      })
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
 
     // get gNews articles by searchword
     const search = searchword || "news";
@@ -58,24 +51,23 @@ export class Main extends React.Component {
         return response.json();
       })
       .then((data) => {
-        this.setState({ articlesFromGNews: data.articles });
-      });
-  }
+        setArticlesFromGNews(data.articles);
+      })
+      .catch((error) => console.log(error));
+  };
 
-  render() {
-    const searchContextValue = {
-      articlesFromGNews: this.state.articlesFromGNews,
-      handleSearch: this.handleSearch,
-    };
-    return (
-      <SearchContext.Provider value={searchContextValue}>
-        <div className="container-fluid g-0">
-          <Header />
-          <div className="px-5">
-            <ArticlesList />
-          </div>
+  const searchContextValue = {
+    articlesFromGNews,
+    handleSearch,
+  };
+  return (
+    <SearchContext.Provider value={searchContextValue}>
+      <div className="container-fluid g-0">
+        <Header />
+        <div className="px-5">
+          <ArticlesList />
         </div>
-      </SearchContext.Provider>
-    );
-  }
-}
+      </div>
+    </SearchContext.Provider>
+  );
+};
