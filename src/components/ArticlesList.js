@@ -19,9 +19,9 @@ export const ArticlesList = () => {
       }
     });
   }, []);
+
   const checkVisited = (title) => {
     const isTile = articleTitlesFromMongo.includes(title);
-    console.log(["isTitle", isTile]);
     return isTile;
   };
 

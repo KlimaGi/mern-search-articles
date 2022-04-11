@@ -8,7 +8,7 @@ export const Time = ({ onSetTime }) => {
   const handleCallback = (start, end) => {
     const startTime = start._d.toISOString().split(".")[0] + "Z";
     const endTime = end._d.toISOString().split(".")[0] + "Z";
-    console.log(start._d.toISOString());
+
     onSetTime(startTime, endTime);
   };
 
