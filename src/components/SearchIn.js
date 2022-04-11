@@ -29,7 +29,7 @@ export class SearchIn extends React.Component {
         >
           <option className="text-color">Choose search in </option>
           {this.state.searchIn.map((choosen) => {
-            return <option>{choosen.key}</option>;
+            return <option key={choosen.key}>{choosen.key}</option>;
           })}
         </select>
       </div>

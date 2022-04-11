@@ -1,23 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
-export class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      filteredSearchWordsFromDB: [],
-      searchWordsFromDB: [],
-      showResultsUl: false,
-      error: false,
-    };
+export const Search = ({ onSendWord, value }) => {
+  const [filteredSearchWordsFromDB, setFilteredSearchWordsFromDB] = useState(
+    []
+  );
+  const [searchWordsFromDB, setSearchWordsFromDB] = useState([]);
+  const [showResultsUl, setShowResultsUl] = useState(false);
+  const [error, setError] = useState(false);
 
-    this.handleChange = this.handleChange.bind(this);
-    this.selectWord = this.selectWord.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
-  }
-
-  handleFocus = () => {
-    this.props.onSendWord("");
+  const handleFocus = () => {
+    onSendWord("");
 
     // get from mongoDB searchwords arr
     axios
@@ -25,95 +18,90 @@ export class Search extends React.Component {
       .then((response) => {
         const tempArr = [];
         response.data.map((object) => tempArr.push(object.searchword));
-        this.setState({ searchWordsFromDB: tempArr });
+        setSearchWordsFromDB(tempArr);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  handleChange(event) {
-    this.props.onSendWord(event.target.value);
+  const handleChange = (event) => {
+    onSendWord(event.target.value);
 
     const word = event.target.value;
     //console.log("input-word", word);
     if (!word) {
-      this.setState({ error: false, showResultsUl: false });
+      setError(false);
+      setShowResultsUl(false);
     } else if (
       word.length >= 3 &&
       word.length <= 40 &&
       word.match(/^[a-zA-Z0-9]*$/gi)
     ) {
-      const filteredSearchWordsFromDB = this.state.searchWordsFromDB.filter(
+      const filteredSearchWordsFromDB = searchWordsFromDB.filter(
         (wordFromDB) => wordFromDB.indexOf(word.toLowerCase()) !== -1
       );
-      this.setState({
-        filteredSearchWordsFromDB: filteredSearchWordsFromDB,
-        error: false,
-        showResultsUl: true,
-      });
+      setFilteredSearchWordsFromDB(filteredSearchWordsFromDB);
+      setError(false);
+      setShowResultsUl(true);
     } else {
-      this.setState({
-        showResultsUl: false,
-        error: true,
-      });
+      setShowResultsUl(false);
+      setError(true);
     }
-  }
-
-  selectWord(word) {
-    this.props.onSendWord(word);
-  }
-
-  handleBlur = () => {
-    this.setState({ showResultsUl: false });
   };
 
-  render() {
-    return (
-      <div className="parent-box" onClick={this.handleBlur}>
-        <div className="error-box error">
-          {this.state.error && (
-            <p className="error text-danger pb-1 m-0">
-              Oops... please enter valid word
-            </p>
-          )}
-        </div>
+  const selectWord = (word) => {
+    onSendWord(word);
+  };
 
-        <input
-          type="text"
-          className="form-control input-back text-color"
-          value={this.props.value}
-          onChange={this.handleChange}
-          onFocus={this.handleFocus}
-          placeholder="Enter search word"
-        />
+  const handleBlur = () => {
+    setShowResultsUl(false);
+  };
 
-        {this.state.showResultsUl && (
-          <ul className="search-list-box px-3">
-            {this.state.filteredSearchWordsFromDB.map((word, index) => (
-              <WordsList
-                searchWord={word}
-                onClickWord={this.selectWord}
-                indexKey={index}
-              />
-            ))}
-          </ul>
+  return (
+    <div className="parent-box" onClick={handleBlur}>
+      <div className="error-box error">
+        {error && (
+          <p className="error text-danger pb-1 m-0">
+            Oops... please enter valid word
+          </p>
         )}
       </div>
-    );
-  }
-}
 
-function WordsList(props) {
+      <input
+        type="text"
+        className="form-control input-back text-color"
+        value={value}
+        onChange={handleChange}
+        onFocus={handleFocus}
+        placeholder="Enter search word"
+      />
+
+      {showResultsUl && (
+        <ul className="search-list-box px-3">
+          {filteredSearchWordsFromDB.map((word, index) => (
+            <WordsList
+              searchWord={word}
+              onClickWord={selectWord}
+              indexKey={index}
+            />
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+const WordsList = ({ searchWord, onClickWord, indexKey }) => {
   return (
     <li
-      key={props.indexKey}
+      key={indexKey}
       className="li-item py-2"
       onClick={() => {
-        props.onClickWord(props.searchWord);
+        onClickWord(searchWord);
       }}
     >
-      {props.searchWord}
+      {searchWord}
     </li>
   );
-}
+};

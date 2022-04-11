@@ -40,7 +40,7 @@ export const Language = ({ onClickLanguage }) => {
       >
         <option className="text-color">Select Language</option>
         {languages.map((lang) => {
-          return <option>{lang.key}</option>;
+          return <option key={lang.key}>{lang.key}</option>;
         })}
       </select>
     </div>
