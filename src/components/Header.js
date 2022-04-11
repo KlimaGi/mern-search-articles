@@ -31,7 +31,7 @@ export const Header = () => {
               <div className="m-1 ">
                 <Search
                   onSendWord={(inputWord) => setSearchWord(inputWord)}
-                  value={searchWord}
+                  searchWord={searchWord}
                 />
               </div>
               <div className="my-1 mx-2">

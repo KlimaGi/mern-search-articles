@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export const Search = ({ onSendWord, value }) => {
+export const Search = ({ onSendWord, searchWord }) => {
   const [filteredSearchWordsFromDB, setFilteredSearchWordsFromDB] = useState(
     []
   );
@@ -71,7 +71,7 @@ export const Search = ({ onSendWord, value }) => {
       <input
         type="text"
         className="form-control input-back text-color"
-        value={value}
+        value={searchWord}
         onChange={handleChange}
         onFocus={handleFocus}
         placeholder="Enter search word"
