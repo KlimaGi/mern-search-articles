@@ -1,0 +1,23 @@
+Sukurtas paieškos komponentas, kurio pagalba vartotojas gali pamatyti 
+9 straipsnius pagal pasirinktus kriterijus. Paieškos komponentas bendrauja su 
+straipsnių paieškos API.
+
+Paieškos laukeliuose vartotojas gali: įvesti tekstą; pasirinkti paieškos 
+sritį (pavadinime, santraukoje ar tekste); pasirinkti kalbą; pasirinkti laiko 
+rėmus. Pagal pasirinktus arba nepasirinktus kriterijus vartotojas gauna straipsnių 
+nuorodas. Vartotojo skaityti straipsniai yra pažymėti. 
+
+Šiame projekte yra naudojama informaciją, gaunamą dinamiškai iš straipsnių 
+gavimo API: 
+`https://gnews.io/api/v4/search?q=${search}&in=${searchWhere}&lang=${lang}&from=${from}&to=${to}&max=9&token=${token}`
+Skaitytų straipsnių pavadinimai yra išsaugomi duomenų bazėje mongoDB. Taip yra pasiekiamas skaitytų 
+straipsnių žymėjimas. 
+Taip pat unikalūs paieškos žodžiai yra saugomi mongoDB. Taip yra rodomas panašių žodžių listas,
+ kai vartotojas įveda paieškos žodį.
+
+_to_do: 
+1. Išsaugoti paieškos kriterijus, kai nukreipiama į pasirinkto strapsnio langą.
+2. Pakoreguoti stilius esant skirtingiems ekrano parametrams.
+3. Pakoreguoti stilius esant hover, select, hover date picker.
+4. Pataisyti node.js failus siekiant labiau clean code.
+5. Pritaikyti error boundary.
