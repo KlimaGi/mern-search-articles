@@ -8,6 +8,7 @@ import { SearchContext } from "../context/searchContext";
 export const ArticlesList = () => {
   const [articleTitlesFromMongo, setArticleTitlesFromMongo] = useState([]);
   const [showError, setShowError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // get titles from mongoDB
@@ -16,6 +17,9 @@ export const ArticlesList = () => {
         const arrTitles = [];
         response.data.map((object) => arrTitles.push(object.title));
         setArticleTitlesFromMongo(arrTitles);
+        setLoading(false);
+      } else {
+        setShowError(true);
       }
     });
   }, []);
@@ -26,6 +30,8 @@ export const ArticlesList = () => {
   };
 
   const articleList = (list) => {
+    if (loading) return <Spinner />;
+
     if (list.length > 0) {
       return list.map((details, index) => {
         return (
@@ -40,10 +46,7 @@ export const ArticlesList = () => {
         );
       });
     } else {
-      setTimeout(() => {
-        setShowError(false);
-      }, 6000);
-      return <div>{showError ? <ErrorMessage /> : <Spinner />}</div>;
+      return <ErrorMessage />;
     }
   };
 
@@ -51,6 +54,7 @@ export const ArticlesList = () => {
     <SearchContext.Consumer>
       {({ articlesFromGNews }) => (
         <div className="d-flex flex-wrap justify-content-evenly my-3">
+          {showError && <ErrorMessage />}
           {articleList(articlesFromGNews)}
         </div>
       )}

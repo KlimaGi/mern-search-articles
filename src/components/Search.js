@@ -36,7 +36,7 @@ export const Search = ({ onSendWord, searchWord }) => {
     } else if (
       word.length >= 3 &&
       word.length <= 40 &&
-      word.match(/^[a-zA-Z0-9]*$/gi)
+      word.match(/^[a-zA-Z0-9 ]*$/gi)
     ) {
       const filteredSearchWordsFromDB = searchWordsFromDB.filter(
         (wordFromDB) => wordFromDB.indexOf(word.toLowerCase()) !== -1
