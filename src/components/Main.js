@@ -3,12 +3,16 @@ import axios from "axios";
 import moment from "moment";
 import "font-awesome/css/font-awesome.min.css";
 import { Header } from "./Header";
+import { ErrorMessage } from "./common/ErrorMessage";
+import { Spinner } from "./common/Spinner";
 import { ArticlesList } from "./ArticlesList";
 import { SearchContext } from "../context/searchContext";
 
 export const Main = () => {
   const [searchWord, setSearchWord] = useState("");
   const [articlesFromGNews, setArticlesFromGNews] = useState([]);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // get articles from gNews, 24h old
@@ -22,9 +26,10 @@ export const Main = () => {
       })
       .then((data) => {
         setArticlesFromGNews(data.articles);
+        setLoading(false);
       })
-      .catch((error) => console.log(error));
-  }, []);
+      .catch((error) => setErrorMessage(true));
+  }, [searchWord]);
 
   const handleSearch = (searchword, searchIn, language, fromTime, toTime) => {
     setSearchWord(searchword);
@@ -35,7 +40,7 @@ export const Main = () => {
         searchword: searchword,
       })
       .then((response) => console.log(response.data))
-      .catch((error) => console.log(error));
+      .catch((error) => setErrorMessage(true));
 
     // get gNews articles by searchword
     const search = searchword || "news";
@@ -52,8 +57,11 @@ export const Main = () => {
       })
       .then((data) => {
         setArticlesFromGNews(data.articles);
+        setLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setErrorMessage(true);
+      });
   };
 
   const searchContextValue = {
@@ -64,10 +72,12 @@ export const Main = () => {
     <SearchContext.Provider value={searchContextValue}>
       <div className="container-fluid g-0">
         <Header />
+        {loading && <Spinner />}
         <div className="px-5">
           <ArticlesList />
         </div>
       </div>
+      {errorMessage && <ErrorMessage text={"Woops! Something went wrong..."} />}
     </SearchContext.Provider>
   );
 };

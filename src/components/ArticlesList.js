@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Article } from "./Article";
-import { Spinner } from "./common/Spinner";
+
 import { ErrorMessage } from "./common/ErrorMessage";
 import { SearchContext } from "../context/searchContext";
 
 export const ArticlesList = () => {
   const [articleTitlesFromMongo, setArticleTitlesFromMongo] = useState([]);
   const [showError, setShowError] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // get titles from mongoDB
@@ -17,8 +16,8 @@ export const ArticlesList = () => {
         const arrTitles = [];
         response.data.map((object) => arrTitles.push(object.title));
         setArticleTitlesFromMongo(arrTitles);
-        setLoading(false);
       } else {
+        console.log("error from articleList");
         setShowError(true);
       }
     });
@@ -30,8 +29,8 @@ export const ArticlesList = () => {
   };
 
   const articleList = (list) => {
-    if (loading) return <Spinner />;
-
+    if (list === undefined)
+      return <ErrorMessage text={"Woops! Something went wrong..."} />;
     if (list.length > 0) {
       return list.map((details, index) => {
         return (
@@ -45,9 +44,10 @@ export const ArticlesList = () => {
           />
         );
       });
-    } else {
-      return <ErrorMessage />;
-    }
+    } else if (list.length === 0)
+      return (
+        <ErrorMessage text={"There is no results for your search word."} />
+      );
   };
 
   return (

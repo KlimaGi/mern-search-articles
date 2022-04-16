@@ -7,7 +7,7 @@ export const Search = ({ onSendWord, searchWord }) => {
   );
   const [searchWordsFromDB, setSearchWordsFromDB] = useState([]);
   const [showResultsUl, setShowResultsUl] = useState(false);
-  const [error, setError] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const handleFocus = () => {
     onSendWord("");
@@ -31,7 +31,7 @@ export const Search = ({ onSendWord, searchWord }) => {
     const word = event.target.value;
     //console.log("input-word", word);
     if (!word) {
-      setError(false);
+      setShowError(false);
       setShowResultsUl(false);
     } else if (
       word.length >= 3 &&
@@ -42,11 +42,11 @@ export const Search = ({ onSendWord, searchWord }) => {
         (wordFromDB) => wordFromDB.indexOf(word.toLowerCase()) !== -1
       );
       setFilteredSearchWordsFromDB(filteredSearchWordsFromDB);
-      setError(false);
+      setShowError(false);
       setShowResultsUl(true);
     } else {
       setShowResultsUl(false);
-      setError(true);
+      setShowError(true);
     }
   };
 
@@ -61,7 +61,7 @@ export const Search = ({ onSendWord, searchWord }) => {
   return (
     <div className="parent-box" onClick={handleBlur}>
       <div className="error-box error">
-        {error && (
+        {showError && (
           <p className="error text-danger pb-1 m-0">
             Oops... please enter valid word
           </p>
