@@ -14,13 +14,11 @@ export const Article = (props) => (
       )}
 
       <div className="m-3">
-        <h5 className="">{props.title}</h5>
+        <h5 className="title">{props.title}</h5>
 
-        <p className="d-inline-block text-truncate for-truncate-width">
-          {props.description}
-        </p>
+        <p className="for-truncate">{props.description}</p>
       </div>
-      <div className="bottom container-fluid rounded-0 back-color-style">
+      <div className="bottom container-fluid back-color-style">
         <ButtonLink propTitle={props.title} linkTo={props.url} />
       </div>
     </div>

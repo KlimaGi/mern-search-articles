@@ -6,8 +6,21 @@
   border: 1px solid $grey-light;
   position: relative;
 }
-.for-truncate-width {
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.for-truncate {
   width: 22rem;
+  height: 6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .bottom {
   position: absolute;
