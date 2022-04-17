@@ -18,18 +18,22 @@ export const Main = () => {
     // get articles from gNews, 24h old
     const time = moment().subtract(2, "days").toISOString().split(".")[0] + "Z";
     const token = process.env.REACT_APP_GN_TOKEN;
-    fetch(
-      `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=${token}`
-    )
-      .then(function (response) {
-        return response.json();
-      })
-      .then((data) => {
-        setArticlesFromGNews(data.articles);
-        setLoading(false);
-      })
-      .catch((error) => setErrorMessage(true));
-  }, [searchWord]);
+    const fetchData = () =>
+      fetch(
+        `https://gnews.io/api/v4/search?q=news&in=content&lang=en&from=${time}&max=9&token=${token}`
+      )
+        .then(function (response) {
+          return response.json();
+        })
+        .then((data) => {
+          setArticlesFromGNews(data.articles);
+          setLoading(false);
+        })
+        .catch((error) => setErrorMessage(true));
+
+    fetchData();
+    setErrorMessage(errorMessage);
+  }, [searchWord, errorMessage]);
 
   const handleSearch = (searchword, searchIn, language, fromTime, toTime) => {
     setSearchWord(searchword);
@@ -73,11 +77,13 @@ export const Main = () => {
       <div className="container-fluid g-0">
         <Header />
         {loading && <Spinner />}
+        {errorMessage && (
+          <ErrorMessage text={"There is no results for your search word."} />
+        )}
         <div className="px-5">
           <ArticlesList />
         </div>
       </div>
-      {errorMessage && <ErrorMessage text={"Woops! Something went wrong..."} />}
     </SearchContext.Provider>
   );
 };
