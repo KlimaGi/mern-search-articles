@@ -29,11 +29,10 @@ export const Main = () => {
           setArticlesFromGNews(data.articles);
           setLoading(false);
         })
-        .catch((error) => setErrorMessage(true));
+        .catch((error) => console.log("error", error));
 
     fetchData();
-    setErrorMessage(errorMessage);
-  }, [searchWord, errorMessage]);
+  }, [searchWord, setArticlesFromGNews]);
 
   const handleSearch = (searchword, searchIn, language, fromTime, toTime) => {
     setSearchWord(searchword);
@@ -44,7 +43,7 @@ export const Main = () => {
         searchword: searchword,
       })
       .then((response) => console.log(response.data))
-      .catch((error) => setErrorMessage(true));
+      .catch((error) => console.log("error", error));
 
     // get gNews articles by searchword
     const search = searchword || "news";
@@ -62,6 +61,7 @@ export const Main = () => {
       .then((data) => {
         setArticlesFromGNews(data.articles);
         setLoading(false);
+        if (data.articles.length < 1) setErrorMessage(true);
       })
       .catch((error) => {
         setErrorMessage(true);
