@@ -14,3 +14,11 @@ export const getTitlesFromDB = () => {
     })
     .catch((error) => console.log("error from titles"));
 };
+
+export const writeToDB = (titleFromProp) => {
+  // send search word to mongoDB
+  axios
+    .post("http://localhost:5000/articles/add", { title: titleFromProp })
+    .then((res) => console.log(res.data))
+    .catch((error) => console.log("error from add tittle to server"));
+};

@@ -1,12 +1,9 @@
 import React from "react";
-import axios from "axios";
+import { writeToDB } from "../api-functions/api";
 
 export const ButtonLink = ({ propTitle, linkTo }) => {
-  const writeToDB = () => {
-    // send search word to mongoDB
-    axios
-      .post("http://localhost:5000/articles/add", { title: propTitle })
-      .then((res) => console.log(res.data));
+  const handleClick = () => {
+    writeToDB(propTitle);
 
     window.setTimeout(function () {
       window.location.reload();
@@ -18,7 +15,7 @@ export const ButtonLink = ({ propTitle, linkTo }) => {
       <a
         href={linkTo}
         target="_blank"
-        onClick={writeToDB}
+        onClick={handleClick}
         className="link-style"
         rel="noreferrer"
       >

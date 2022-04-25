@@ -28,6 +28,8 @@ export const ArticlesList = () => {
 
   const checkVisited = (title) => {
     const isTitle = articleTitlesFromMongo.includes(title);
+    //a list loads twise, why?
+    console.log("isTitle", isTitle);
     return isTitle;
   };
 
@@ -51,7 +53,7 @@ export const ArticlesList = () => {
 
   return (
     <SearchContext.Consumer>
-      {({ articlesFromGNews }) => (
+      {({ articlesFromGNews, setArticleTitlesFromMongo }) => (
         <div className="d-flex flex-wrap justify-content-evenly my-3">
           {articleList(articlesFromGNews)}
         </div>
